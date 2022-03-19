@@ -11,3 +11,4 @@ def quick_sort(arr):
         else:
             equal_arr.append(num)
     return quick_sort(lesser_arr) + equal_arr + quick_sort(greater_arr)
+#comment for checking
