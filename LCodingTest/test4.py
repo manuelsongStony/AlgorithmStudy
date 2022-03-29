@@ -6,7 +6,7 @@ def recursive(arr,num,i):
         recursive(arr,num-arr[i],i+1)
 
 
-if sum(brr[0:i])>sum(arr[0:i])
+#if sum(brr[0:i])>sum(arr[0:i])
 
 """
 def solution(arr, brr):
