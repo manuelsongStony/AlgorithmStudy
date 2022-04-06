@@ -17,4 +17,8 @@ print()
 
 for i in range(0,n):
     print(i, end=' ')
+print()
+for i in range(n-1,-1,-1):
+    print(i, end=' ')
+print()
 
