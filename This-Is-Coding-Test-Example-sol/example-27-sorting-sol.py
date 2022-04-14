@@ -1,26 +1,19 @@
-import bisect
-def binary_search(array,x,start,end):
-    if start>end:
-        return end
-
-    mid=(start+end)//2
-
-    if array[mid] ==x:
-        return mid
-
-    if array[mid]>x:
-        return  binary_search(array, x, start, mid-1)
-    else:
-        return binary_search(array, x, mid+1, end)
+from bisect import bisect_left, bisect_right
 
 
+def count_by_range(array, left_value, right_value):
+    right_index=bisect_right(array,right_value)
+    left_index=bisect_left(array,left_value)
+    return right_index -left_index
 
-n,x=7,4
-array=[1,1,2,2,2,2,3]
 
-k=binary_search(array,x+0.5,0,n-1)-binary_search(array,x-0.5,0,n-1)
+n,x=map(int, input().split())
+array=list(map(int,input().split()))
 
-if k==0:
-    k=-1
+count=count_by_range(array,x,x)
 
-print(k)
+if count ==0:
+    print(-1)
+
+else:
+    print(count)
