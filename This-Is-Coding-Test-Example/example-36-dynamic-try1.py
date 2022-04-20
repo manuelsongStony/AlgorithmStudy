@@ -1,6 +1,9 @@
 import copy
-a="sundays"
+a="sunday"
+a="sundsssay"
+a="saturday"
 b="saturday"
+#6,5 | 6,6
 #answer should be 4
 a2="cat"
 b2="cut"
