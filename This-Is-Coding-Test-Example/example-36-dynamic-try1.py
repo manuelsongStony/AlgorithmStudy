@@ -1,7 +1,6 @@
 import copy
 a="sunday"
-a="sundsssay"
-a="saturday"
+
 b="saturday"
 #6,5 | 6,6
 #answer should be 4
@@ -12,35 +11,50 @@ a_array=list(a)
 b_array=list(b)
 
 
-#a가 더 작다면 삽입이 낫고 더크다면 교환이 남 -> 삭제는 제일나중에 생각(제일낭비)
 
-temp_array=copy.deepcopy(a_array)
 
-change_count=0
-
-index=0
-while temp_array!=b_array:
-    if len(temp_array)<len(b_array):
-        if temp_array[index]==b_array[index]:
-            index+=1
-        else:
-            temp_array.insert(index, b_array[index])
-            change_count+=1
-            index += 1
+def get_the_edit_count(a,b,count):
+    if a==b:
+        return count
     else:
-        if temp_array[index]==b_array[index]:
-            index+=1
-        else:
-            temp_array.pop(index)
-            temp_array.insert(index, b_array[index])
-            change_count+=1
-            index += 1
+        index=0
+        smaller_value=min(len(a),len(b))
+        for _ in range(smaller_value):
+            if a[index]==b[index]:
+                index+=1
+            else:
+                break;
 
-    if index >=len(b_array):
-        n=len(temp_array) - len(b_array)
-        for _ in range(n):
-            temp_array.pop(len(temp_array)-1)
-            change_count += 1
+        if index==len(a) or index==len(b):
+            if len(a)>len(b):
+                count+=len(a)-len(b)
+                return count
+            else:
+                count += len(b)-len(a)
+                return count
 
-print(change_count)
+
+        copy_temp=copy.deepcopy(a)
+        copy_temp.pop(index)
+        do_remove = copy_temp
+
+        copy_temp = copy.deepcopy(a)
+        copy_temp.insert(index,b[index])
+        do_insert = copy_temp
+
+        copy_temp = copy.deepcopy(a)
+        copy_temp.pop(index)
+        copy_temp.insert(index,b[index])
+        do_replace = copy_temp
+
+        temp1=get_the_edit_count(do_remove,b,count+1)
+
+        temp2=get_the_edit_count(do_insert, b, count + 1)
+
+        temp3=get_the_edit_count(do_replace, b, count + 1)
+
+        return min(temp1,temp2,temp3)
+
+
+print(get_the_edit_count(a_array,b_array,0))
 
